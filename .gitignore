@@ -1,5 +1,6 @@
 # Credentials protection
 credentials.php
+cred.php
 
 # Windows image file caches
 Thumbs.db

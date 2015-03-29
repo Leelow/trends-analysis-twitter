@@ -2,7 +2,7 @@
 credentials.php
 
 # PHPStorm files
-idea/
+.idea/
 
 # Windows image file caches
 Thumbs.db

@@ -1,8 +1,27 @@
+####################
+# Custom
+####################
+
+# Campaign files
+system/campaign
+!/system/.htaccess
+
 # Credentials protection
 credentials.php
 
 # PhpStorm files
 .idea/
+
+# Archives
+archive
+
+# Log file
+system/log_error.txt
+
+
+####################
+# Auto-generated
+####################
 
 # Windows image file caches
 Thumbs.db

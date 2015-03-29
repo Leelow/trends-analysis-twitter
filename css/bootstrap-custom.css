@@ -1,0 +1,12 @@
+.navbar-fixed-bottom {
+	padding-top:4px;
+    border-width: 4px 1px 0px;
+}
+
+#col-progressbar {
+	padding-top: 9px;
+}
+
+.label-progressbar {
+	padding-top: 2px;
+}

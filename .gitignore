@@ -1,6 +1,9 @@
 # Credentials protection
 credentials.php
 
+# PHPStorm files
+idea/
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db

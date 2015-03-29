@@ -1,7 +1,7 @@
 # Credentials protection
 credentials.php
 
-# PHPStorm files
+# PhpStorm files
 .idea/
 
 # Windows image file caches

@@ -5,7 +5,6 @@
 	
 ?>
 
-<span>test3lol</span>
 
 <?php
 

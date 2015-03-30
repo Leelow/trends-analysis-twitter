@@ -8,7 +8,7 @@
 		
 	if($_SESSION['connect'] == true)
 		header('Location: index.php'); 
-	
+
 	$type = 'form-group';
 
 	if(isset($_POST['valid']))

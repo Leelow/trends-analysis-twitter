@@ -5,7 +5,7 @@
 	
 ?>
 
-<span>test</span>
+<span>test2</span>
 
 <?php
 

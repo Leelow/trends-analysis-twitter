@@ -98,9 +98,14 @@ $('#create').click(function() {
 					if(parse_data['response'] == 'SUCCESS') {
 						showMessage('La campagne <strong>' + c_name + '</strong> a bien été programmée au ' + c_begin +'.', 'success');				
 					} else {
-						var conflict = parse_data['conflict'];
-						showMessage('Conflit avec la campagne <strong>' + conflict['name'] + '</strong> programmée du ' + conflict['begin'] + ' jusqu\'au ' + conflict['end'] + '.', 'warning');
-						unlock();					
+						var type = parse_data['type'];
+						var msg  = parse_data['msg'];
+                        if(type == 'conflict') {
+                            showMessage('Conflit avec la campagne <strong>' + conflict['name'] + '</strong> programmée du ' + conflict['begin'] + ' jusqu\'au ' + conflict['end'] + '.', 'warning');
+                        } else if(type == 'state') {
+                            showMessage('Vous devez être connecté pour créer une campagne.', 'danger');
+                        }
+                        unlock();
 					}
 				}
 			});

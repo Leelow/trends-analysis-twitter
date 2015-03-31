@@ -23,6 +23,7 @@
 			if($password == '95af61fd5e79bff3a2fd25fe97b4e82d08b6b95b3bea4f9a874ae6b886e3351e4b3e8aea6e0b5ccc4d497cd55bd2029ac28f8a271d71bf2d60ab6924f388e494') {
 		
 				$_SESSION['connect'] = true;
+
 				if(isset($_SESSION['redirect']))
 					header('Location: ' . $_SESSION['redirect']);
 				else
@@ -87,6 +88,11 @@
                   <div class="form-group">
                     <div class="col-lg-12 col-lg-offset-4">
                       <button name="valid" type="submit" class="btn btn-primary">Connexion</button>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-lg-12 text-center">
+                        <a href="index.php">Poursuivre en mode invité</a>
                     </div>
                   </div>
                 </fieldset>

@@ -66,9 +66,12 @@ function Data() {
 				$('.title_state').text(state);
 				
 				// Actions effectuées une fois que la campagne est terminée
-				if(data['state'] != 'STARTED') {
+				if(data['state'] != 'STARTED' || !isConnected()) {
 					hideProgressFooter();
-					showEndedCancelledZone();
+
+                    // Si l'on est connecté
+                    if(isConnected())
+					    showEndedCancelledZone();
 					
 					// On interrompt les mise à jours des données quand la campagne est terminée
 					clearInterval(timer);

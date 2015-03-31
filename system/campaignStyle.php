@@ -33,4 +33,14 @@
 		}
 	}
 
+    // Affichage en fonction de l'état (connecté ou non)
+    function menuState() {
+        echo '<li>' . "\n";
+        if(isset($_SESSION['connect']) && $_SESSION['connect'])
+            echo '<a href="signout.php">Se déconnecter</a>' . "\n";
+        else
+            echo '<a href="login.php">Se connecter</a>' . "\n";
+        echo '</li>' . "\n";
+    }
+
 ?>

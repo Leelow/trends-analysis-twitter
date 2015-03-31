@@ -4,6 +4,8 @@
 	require_once DIR_INCLUDES               . 'secure.inc.php';
 	require_once DIR_SYSTEM                 . 'campaign.php';
 
+    onlyConnected();
+
 	if(isset($_GET['id']) and (!empty($_GET['id']))) {
 		try {
 			$campaign = new Campaign($_GET['id']);

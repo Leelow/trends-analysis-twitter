@@ -29,10 +29,11 @@
 	<script src="js/view/interaction.js" type="text/javascript"></script>
 	<script type="text/javascript">
 	
-	function getId()    { return $('#campaign_id').val();    }	
-	function getName()  { return $('#campaign_name').val();  }	
-	function getState() { return $('#campaign_state').val(); }	
-	function getStep()  { return $('#campaign_step').val();  }
+	function isConnected()  { return ($('#user_state').val() == 'true'); }
+	function getId()        { return $('#campaign_id').val();            }
+	function getName()      { return $('#campaign_name').val();          }
+	function getState()     { return $('#campaign_state').val();         }
+	function getStep()      { return $('#campaign_step').val();          }
 	
 	$(document).ready(function () {
 
@@ -49,15 +50,20 @@
 			Graph_tweets_count(); 	// Graphique de comptage des tweets
 			Graph_algo_polarity(); 	// Graphique des algorithmes de polarité
 			Graph_algo_sugar();		// Graphique de l'algorithme SUGAR
-	
-			// Affichage si la campagne n'est pas terminée
-			if(getState() == 'STARTED') {
-				showProgressFooter();
-			// Affichage si la campagne est terminée ou annulée
-			} else {
-				showEndedCancelledZone();
-			}
-			
+
+            // Affichage uniquement si l'on est connecté
+            if(isConnected()) {
+
+                // Si la campagne n'est pas terminée
+                if (getState() == 'STARTED') {
+                    showProgressFooter();
+                    // Si la campagne est terminée ou annulée
+                } else {
+                    showEndedCancelledZone();
+                }
+
+            }
+
 			view_div.fadeIn();
 		}
 		// Sinon, on affiche une alerte et on reactualisera la page toutes les minutes jusqu'à ce que la campagne soit lancée
@@ -71,6 +77,7 @@
 	});
 	</script>
 
+	  <input id="user_state" type="hidden" value="<?php echo ($_SESSION['connect'] ? 'true' : 'false') ?>">
 	  <input id="campaign_id" type="hidden" value="<?php echo $campaign->id ?>">
 	  <input id="campaign_name" type="hidden" value="<?php echo $campaign->name ?>">
 	  <input id="campaign_state" type="hidden" value="<?php echo $campaign->state ?>">

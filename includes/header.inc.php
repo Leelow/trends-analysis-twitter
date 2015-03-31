@@ -4,6 +4,8 @@
 	require_once DIR_SYSTEM   . 'campaign.php';
 	require_once DIR_SYSTEM   . 'campaignStyle.php';
 
+    remember();
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -57,8 +59,8 @@
 				<?php menuEndedOrCancelledCampaign() ?>          
               </ul>
             </li>
+            <?php menuState() ?>
           </ul>
-
         </div>
       </div>
     </div>

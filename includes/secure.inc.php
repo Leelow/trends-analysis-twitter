@@ -13,9 +13,10 @@
 
     /* Sécurisation */
     function onlyConnected() {
-        if($_SESSION['connect'] == false)
+        if($_SESSION['connect'] == false) {
             header('Location: login.php');
-        exit();
+            exit();
+        }
     }
 
 ?>

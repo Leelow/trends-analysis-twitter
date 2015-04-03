@@ -31,7 +31,7 @@
 	
 	define('CLEAN_PROCESS_SCRIPT',	DIR_CLEAN_PROCESS . 'script_clean.php');	// v 1.0
 	define('NEWMAN_GIRVAN_SCRIPT',	DIR_NEWMAN_GIRVAN . 'script_newman.php');
-	define('NEWMAN_GIRVAN_JAR',		DIR_NEWMAN_GIRVAN . 'newman_girvan.jar');	// v 2.2
+	define('NEWMAN_GIRVAN_JAR',		DIR_NEWMAN_GIRVAN . 'newman_girvan.jar');	// v 3.0
 	define('NEWMAN_GIRVAN_DIC',		DIR_NEWMAN_GIRVAN . 'extDAL.txt');
 	define('TF_IDF_SCRIPT',			DIR_TF_IDF 		  . 'script_tf_idf.php');
 	define('TF_IDF_JAR',			DIR_TF_IDF        . 'tfidf.jar');			// v 1.1

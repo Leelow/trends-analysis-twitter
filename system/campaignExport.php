@@ -158,7 +158,7 @@
 		private static function normData(&$data) {
 		
 			// On determine la valeur maximale en absolu, elle correspond au terme de normalisation
-			$norm = 0;
+			$norm = 1;
 			foreach($data as $couple) {
 				$abs = abs($couple['value']);
 				if($abs > $norm)

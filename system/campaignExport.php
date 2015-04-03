@@ -45,8 +45,8 @@
 		// Retourne les données nécessaires à l'affichage d'un graphique de l'algorithme de Newman Girvan à l'aide de Google Charts (JSON)
 		public function chartsPolarityNewmanGirvan() {  
 			$bddData = $this->campaign->bdd->getDataNewmanGirvan();
-			self::normData($bddData);
 			self::centerNewmanGirvanData($bddData);
+            self::normData($bddData);
 		
 			$data = array();
 			$i = 0;
@@ -104,8 +104,8 @@
 		
 			// On recupère les données des algorithmes, normalisées et centrées
 			$bddDataNG = $this->campaign->bdd->getDataNewmanGirvan();
-			self::normData($bddDataNG);
 			self::centerNewmanGirvanData($bddDataNG);
+            self::normData($bddDataNG);
 			$count_NG = count($bddDataNG);
 			
 			$bddDataTF = $this->campaign->bdd->getDataTfIdf();
@@ -158,7 +158,7 @@
 		private static function normData(&$data) {
 		
 			// On determine la valeur maximale en absolu, elle correspond au terme de normalisation
-			$norm = 1;
+			$norm = 0;
 			foreach($data as $couple) {
 				$abs = abs($couple['value']);
 				if($abs > $norm)

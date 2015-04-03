@@ -52,17 +52,20 @@
 			Graph_algo_sugar();		// Graphique de l'algorithme SUGAR
 
             // Affichage uniquement si l'on est connecté
-            if(isConnected()) {
+            //if(isConnected()) {
 
                 // Si la campagne n'est pas terminée
                 if (getState() == 'STARTED') {
-                    showProgressFooter();
+                    if(isConnected())
+                        showProgressFooter();
+                    else
+                        guestEndedCancelledZone();
                     // Si la campagne est terminée ou annulée
-                } else {
+                } else if(isConnected()) {
                     showEndedCancelledZone();
                 }
 
-            }
+            //}
 
 			view_div.fadeIn();
 		}

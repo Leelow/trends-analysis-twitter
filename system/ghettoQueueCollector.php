@@ -48,7 +48,7 @@ class GhettoQueueCollector extends OauthPhirehose {
 		$this->campaign = $campaign;
 	  
 		// Emplacement où seront sauvegardés les tweets filtrés
-		$this->queueDir = DIR_CAMPAIGN . $this->campaign->id . '_' . $this->campaign->name . '/tweets';
+		$this->queueDir = $this->campaign->getTweetsDir();
 		
 		// Intervalle d'enregistrement des fichiers (fixé à 60, à toucher avec précautions). Il ne faut jamais descendre en dessous de 10 secondes
 		$this->rotateInterval = 59;

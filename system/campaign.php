@@ -107,7 +107,12 @@
 			}
 		
 		}
-	
+
+        // Retourne le dossier de sauvegarde des tweets de la campagne (sans de "/")
+        public function getTweetsDir() {
+            return $this->CAMPAIGN_ROOT . 'tweets';
+        }
+
 		// Planifie une campagne
 		public function scheduled() {
 			// On extrait les données necessaires du timestamp pour la commande cron

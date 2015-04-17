@@ -26,7 +26,7 @@
                   <div class="form-group" id="input_name">
                     <label for="inputText" class="col-lg-3 control-label">Nom de la campagne</label>
                     <div class="col-lg-9">
-                      <input type="text" class="form-control" id="campaign_name" placeholder="Nom de la campagne">
+                      <input type="text" class="form-control" id="campaign_name" placeholder="Nom de la campagne" maxlength="50">
                     </div>
                   </div>
 

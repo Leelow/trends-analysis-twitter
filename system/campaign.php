@@ -65,7 +65,7 @@
 				$this->export = new CampaignExport($this);
 				
 				// On définit les constantes
-				$this->CAMPAIGN_ROOT			= DIR_CAMPAIGN . $this->id . '_' . $this->name . '/';
+				$this->CAMPAIGN_ROOT			= DIR_CAMPAIGN . $this->id . '/';
 				$this->CAMPAIGN_TWEETS			= $this->CAMPAIGN_ROOT . 'tweets/';
 				$this->CAMPAIGN_CLEAN_TWEETS	= $this->CAMPAIGN_ROOT . 'tweets_clean/';
 				$this->CAMPAIGN_NEWMAN_GIRVAN	= $this->CAMPAIGN_ROOT . 'newman_girvan/';

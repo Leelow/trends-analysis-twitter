@@ -17,10 +17,21 @@ function Data() {
 				else
 					$('#title_keywords').text('Mots clés');
 				
-				// Affichage des mot clés
+				// Affichage des mot clés (mode view)
 				for (var i in data['keywords']){
-					$('#keywords').append(data['keywords'][i] + '<br>');//alert();
+					$('#keywords').append(data['keywords'][i] + '<br>');
 				}
+
+                // Affichage des mot clés (mode wait)
+                var str = '';
+                var display_title = 'Mot-clé : ';
+                for (var i in data['keywords']){
+                    str += data['keywords'][i] + ', ';
+                    if(i > 0) {
+                        display_title = 'Mots-clés : ';
+                    }
+                }
+                $('#keywords_wait').text(display_title + str.substring(0, str.length - 2));
 
 			}
 	});

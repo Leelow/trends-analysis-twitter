@@ -98,6 +98,10 @@
 		<br>
 		<br>
 		<br>
+          <!-- Mots clés -->
+          <div class="col-lg-12">
+              <h4 id="keywords_wait">Mots-clés : Chargement ...</h4>
+          </div>
 		<br>
 		<br>
         <div class="row">

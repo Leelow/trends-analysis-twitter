@@ -15,5 +15,10 @@
 	define('BDD_HOST',     '');
 	define('BDD_LOGIN',    '');
 	define('BDD_PASSWORD', '');
+	
+	// ********************* Identfiants de l'interface web ********************** //
+	
+	define('PANEL_LOGIN',    '');
+	define('PANEL_PASSWORD', '');
 
 ?>

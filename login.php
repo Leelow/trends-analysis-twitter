@@ -14,13 +14,14 @@
 	if(isset($_POST['valid']))
 		$type = 'form-group has-warning';
 	
-	if(isset($_POST['login']) and !empty($_POST['login']) and isset($_POST['password']) and !empty($_POST['password'])) {
+	if(isset($_POST['login']) and isset($_POST['password'])) {
 	
-		$login    = hash('sha512', $_POST['login']);
-		$password = hash('sha512', $_POST['password']);
-		if($login == 'a2de4c12afbf942649c13c254abe760c1e1b531cc1317253717a2e1faaf19b0874cf5b3fa9fc293e720ce8cf03d34e27b760b57a55846fb7e32ec17f822768c9') {
+		$login    = $_POST['login'];
+		$password = $_POST['password'];
+
+		if($login == PANEL_LOGIN) {
 		
-			if($password == '95af61fd5e79bff3a2fd25fe97b4e82d08b6b95b3bea4f9a874ae6b886e3351e4b3e8aea6e0b5ccc4d497cd55bd2029ac28f8a271d71bf2d60ab6924f388e494') {
+			if($password == PANEL_PASSWORD) {
 		
 				$_SESSION['connect'] = true;
 
@@ -42,7 +43,7 @@
 		}
 
 	}
-
+	
 ?>
 <!DOCTYPE html>
 <html lang="en">

@@ -5,7 +5,7 @@
 	
 ?>
 
-<?php listEndedOrCancelledCampaign ?>
+<?php listEndedOrCancelledCampaign() ?>
 
 <?php
 

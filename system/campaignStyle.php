@@ -6,8 +6,9 @@
 	// Menu qui affiche le lien vers la campagne en cours
 	function menuStartedCampaign() {
 		$startedCampagin = CampaignBdd::getStartedCampaign();
+		$date = ($startedCampagin == '') ? '' : date(' - d/m/Y', $startedCampagin['UNIX_TIMESTAMP(begin)']);
 		echo '<li>' . "\n";
-		echo '	  <a href="view.php?id=' . $startedCampagin['id'] . '"><strong>' . $startedCampagin['name'] . '</strong></a>' . "\n";
+		echo '	  <a href="view.php?id=' . $startedCampagin['id'] . '"><strong>' . $startedCampagin['name'] . $date . '</strong></a>' . "\n";
 		echo '</li>' . "\n";
 	}
 	
@@ -15,8 +16,10 @@
 	function menuScheduledCampaign() {
 		$scheduledCampagin = CampaignBdd::getScheduledCampaign();	
 		if(count($scheduledCampagin) > 0) {		
-			foreach($scheduledCampagin as $campaign)
-				echo '<li><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";	
+			foreach($scheduledCampagin as $campaign) {
+				$date = ($campaign == '') ? '' : date(' - d/m/Y', $campaign['UNIX_TIMESTAMP(begin)']);
+				echo '<li><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . $date . '</a></li>' . "\n";
+			}
 		} else {
 			echo '<li><a href="#">Aucune campagne</a></li>' . "\n";
 		}
@@ -28,8 +31,10 @@
 		$endedOrCancelledCampaign = CampaignBdd::getEndedOrCancelledCampaignLimit();
         $count_display = count($endedOrCancelledCampaign);
         if($count_display > 0) {
-            foreach($endedOrCancelledCampaign as $campaign)
-                echo '<li><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
+            foreach($endedOrCancelledCampaign as $campaign) {
+				$date = ($campaign == '') ? '' : date(' - d/m/Y', $campaign['UNIX_TIMESTAMP(begin)']);
+                echo '<li><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . $date . '</a></li>' . "\n";
+			}
             echo '<li><a href="list_ended_cancelled.php"><b>Voir l\'intégralité des campagnes terminées</b></a></li>' . "\n";
         } else {
 			echo '<li><a href="#">Aucune campagne</a></li>' . "\n";

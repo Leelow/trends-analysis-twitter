@@ -61,7 +61,7 @@
     </div>
 
 		<!-- Progress footer -->
-        <div id="progress-footer" class="navbar navbar-default navbar-fixed-bottom" style="display:none">
+        <div id="progress-footer" class="navbar navbar-default navbar-fixed-bottom">
 			<div class="container">
 				<!-- Date de début -->
 				<div class="col-lg-1">

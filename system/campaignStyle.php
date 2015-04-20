@@ -27,6 +27,7 @@
         // On recupère les 10 campagnes terminées/annulées les plus récentes
 		$endedOrCancelledCampaign = CampaignBdd::getEndedOrCancelledCampaign();
         $count_display = count($endedOrCancelledCampaign);
+        echo $count_display;
         if($count_display > 10) {
             foreach($endedOrCancelledCampaign as $campaign) {
                 echo '<li><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";

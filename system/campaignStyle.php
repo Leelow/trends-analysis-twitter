@@ -73,7 +73,7 @@
                 echo '<li class="list-group-item"><span class="badge">' . $campaign['begin'] . '</span><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
             echo '</ul>' . "\n";
         } else {
-			echo '<span>Aucune campagne programmées.</span>' . "\n";
+			echo '<span>Aucune campagne programmée.</span>' . "\n";
         }
 	}
 	

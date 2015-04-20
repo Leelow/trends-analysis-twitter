@@ -52,7 +52,7 @@
 				
 				?>
 				
-				  <p>Depuis le <?php echo $number_tweets ?>, </p>
+				  <p>Depuis le <?php echo $size_tweets ?>, </p>
 				</div>
 			  </div>
 			</div>

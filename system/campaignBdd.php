@@ -335,7 +335,7 @@
 		}
 		
 		// Retourne le nombre total de tweets récupérés sur l'ensemble des campagnes
-		public static function getTotalTweets() {
+		public static function getTotalTweetsEndedOrCancelledCampaign() {
 			$list = self::getEndedOrCancelledCampaign();
 			$total = 0;
 			foreach($list as $campaign) {

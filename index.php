@@ -44,7 +44,7 @@
 					$number_campaign = campaignBdd::getNumberEndedOrCancelledCampaign();
 					
 					// Nombre total de tweets récupérés
-					$number_tweets = campaignBdd::getTotalTweets();
+					$number_tweets = campaignBdd::getTotalTweetsEndedOrCancelledCampaign();
 				
 				
 				?>

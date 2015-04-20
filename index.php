@@ -4,7 +4,8 @@
 	require_once DIR_INCLUDES . 'header.inc.php';
 	
 ?>
-
+	<br>
+	<br>
 	<div class="row">
 	  <div class="col-lg-6">
 		<h2>Quelques informations !</h2>

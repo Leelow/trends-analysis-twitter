@@ -313,6 +313,13 @@
             return $query->fetch();
         }
 		
+		// Retourne la liste des campagnes programmées avec leur date de programmation
+		public static function listScheduledCampaign() {
+			$bdd = self::connect();
+			$query = $bdd->query("SELECT id, name, begin FROM campaign_list WHERE state = 'SCHEDULED' ORDER BY begin;");
+			return $query->fetchAll();
+		}
+		
 		// **************************** Algorithme de nettoyage **************************** //
 		
 		// Insère une entrée dans la table

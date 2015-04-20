@@ -49,7 +49,7 @@
             }
             echo '</ul>' . "\n";
         } else {
-
+			echo '<span>Aucune campagne terminée.</span>' . "\n";
         }
     }
 
@@ -63,4 +63,18 @@
         echo '</li>' . "\n";
     }
 
+	// Liste des campagnes à venir
+	function displayScheduledCampaign() {
+        $scheduledCampaign = CampaignBdd::listScheduledCampaign();
+        $count_display = count($scheduledCampaign);
+        if($count_display > 0) {
+            echo '<ul class="list-group">' . "\n";
+            foreach($scheduledCampaign as $campaign)
+                echo '<li class="list-group-item"><span class="badge">' . $campaign['begin'] . '</span><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
+            echo '</ul>' . "\n";
+        } else {
+			echo '<span>Aucune campagne programmées.</span>' . "\n";
+        }
+	}
+	
 ?>

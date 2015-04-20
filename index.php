@@ -63,6 +63,31 @@
 		<!-- Progress footer -->
         <div id="progress-footer" class="navbar navbar-default navbar-fixed-bottom" style="display:none">
 			<div class="container">
+				<!-- Date de début -->
+				<div class="col-lg-1">
+					<h6 id="begin" class="label-progressbar"></h6>
+				</div>
+				<!-- Progressbar -->
+				<div class="col-lg-6" id="col-progressbar">
+				  <div class="progress progress-striped active">
+					<div id="progressbar" class="progress-bar progress-bar-success" style="width:100%">
+					  <!-- Avancement de la campagne -->
+					  <span id="percentage_campaign"></span>
+					</div>
+				  </div>
+				</div>
+				<!-- Date de fin -->
+				<div class="col-lg-1">
+					<h6 id="end" class="label-progressbar"></h6>
+				</div>
+				<!-- Bouton d'arrêt -->
+				<div class="col-lg-2">
+				  <button id="cancel_button" type="button" class="btn btn-warning col-lg-12">Arreter la campagne</button>	
+				</div>	
+				<!-- Bouton de suppression -->
+				<div class="col-lg-2">
+				  <button id="delete_button_started" type="button" class="btn btn-danger col-lg-12">Supprimer la campagne</button>
+				</div>
             </div>
         </div>
 	

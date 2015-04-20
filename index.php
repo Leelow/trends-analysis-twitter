@@ -51,7 +51,7 @@
 				
 				?>
 				
-				  <p>Depuis le <? echo $first_date ?>, <? echo $number_tweets ?> ont été récoltés sur <? echo $number_campaign ?> campagnes. Cela représente environ <? echo $size_tweets ?>.</p>
+				  <p>Depuis le <?php echo $first_date ?>, <?php echo $number_tweets ?> ont été récoltés sur <?php echo $number_campaign ?> campagnes. Cela représente environ <?php echo $size_tweets ?>.</p>
 				</div>
 			  </div>
 			</div>

@@ -45,6 +45,9 @@
 		
 		// Initialise la table de liste des campagnes (lors de l'installation)
 		public static function installation() {
+			// On créer la base de données si nécessaire
+			$bdd = new PDO('mysql:host=' . BDD_HOST, BDD_LOGIN, BDD_PASSWORD);
+			$bdd->query('CREATE DATABASE IF NOT EXISTS ' . BDD_NAME . ';');
 			$bdd = self::connect();
 			$bdd->query('CREATE TABLE IF NOT EXISTS campaign_list (' .
 							'id       INT(11)                                            AUTO_INCREMENT     COMMENT "Identifiant unique",' .

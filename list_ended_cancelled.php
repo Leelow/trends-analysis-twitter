@@ -4,7 +4,8 @@
 	require_once DIR_INCLUDES . 'header.inc.php';
 	
 ?>
-
+<br>
+<br>
 <?php listEndedOrCancelledCampaign() ?>
 
 <?php

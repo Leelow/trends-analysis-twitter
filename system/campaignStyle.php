@@ -43,7 +43,9 @@
         if($count_display > 0) {
             echo '<ul class="list-group">' . "\n";
             foreach($endedOrCancelledCampaign as $campaign) {
-                echo '<li class="list-group-item"><span class="badge">14</span><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
+                $campaign_instance = new Campaign($campaign['id']);
+                $size = $campaign_instance->getSize();
+                echo '<li class="list-group-item"><span class="badge">' . $size . '</span><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
             }
             echo '</ul>' . "\n";
         } else {

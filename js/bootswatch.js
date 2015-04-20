@@ -9,7 +9,6 @@
       else
         $('#home > .navbar').addClass('navbar-transparent');
   });
-
   $("a[href='#'").click(function(e) {
     e.preventDefault();
   });

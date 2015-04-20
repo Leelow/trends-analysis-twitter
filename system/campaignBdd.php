@@ -47,7 +47,7 @@
 		public static function installation() {
 			// On créer la base de données si nécessaire
 			$bdd = new PDO('mysql:host=' . BDD_HOST, BDD_LOGIN, BDD_PASSWORD);
-			$bdd->query('CREATE DATABASE IF NOT EXISTS `' . BDD_NAME . '`;');
+			$bdd->query('CREATE DATABASE IF NOT EXISTS `' . BDD_NAME . '` DEFAULT CHARACTER SET utf8;');
 			$bdd->query('USE `' . BDD_NAME . '`;');
 			$bdd->query('CREATE TABLE IF NOT EXISTS campaign_list (' .
 							'id       INT(11)                                            AUTO_INCREMENT     COMMENT "Identifiant unique",' .

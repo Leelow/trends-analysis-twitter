@@ -30,8 +30,8 @@
         if($count_display > 10) {
             foreach($endedOrCancelledCampagin as $campaign)
                 echo '<li><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
-            $count_total   = CampaignBdd::getNumberEndedOrCancelledCampaign();
-            echo '<li><a href="list_ended_cancelled.php"><b>Voir les ' . $count_total . ' campagnes</b></a></li>' . "\n";
+            $count_total = CampaignBdd::getNumberEndedOrCancelledCampaign();
+            echo '<li><a href="list_ended_cancelled.php"><b>Voir la totalité des campagnes</b></a></li>' . "\n";
         } else if($count_display > 0) {
 			foreach($endedOrCancelledCampagin as $campaign)
 				echo '<li><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";	

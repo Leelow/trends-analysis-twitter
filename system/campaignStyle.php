@@ -25,7 +25,7 @@
 	// Menu qui affiche les campagnes terminées
 	function menuEndedOrCancelledCampaign() {
         // On recupère les 10 campagnes terminées/annulées les plus récentes
-		$endedOrCancelledCampaign = CampaignBdd::getEndedOrCancelledCampaign();
+		$endedOrCancelledCampaign = CampaignBdd::getEndedOrCancelledCampaignLimit();
         $count_display = count($endedOrCancelledCampaign);
         if($count_display > 0) {
             foreach($endedOrCancelledCampaign as $campaign)
@@ -35,6 +35,21 @@
 			echo '<li><a href="#">Aucune campagne</a></li>' . "\n";
 		}
 	}
+
+    // Liste de l'intégralité des campagnes terminées
+    function listEndedOrCancelledCampaign() {
+        $endedOrCancelledCampaign = CampaignBdd::getEndedOrCancelledCampaign();
+        $count_display = count($endedOrCancelledCampaign);
+        if($count_display > 0) {
+            echo '<ul class="list-group">' . "\n";
+            foreach($endedOrCancelledCampaign as $campaign) {
+                echo '<li class="list-group-item"><span class="badge">14</span><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
+            }
+            echo '</ul>' . "\n";
+        } else {
+
+        }
+    }
 
     // Affichage en fonction de l'état (connecté ou non)
     function menuState() {

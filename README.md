@@ -13,8 +13,8 @@ Il est possible de le tester sous Windows avec [Wamp](http://www.wampserver.com/
 
 Avant toute chose, assurez-vous que votre système est à jour :
 ```bash
-sudo apt-get upgrade
 sudo apt-get update
+sudo apt-get upgrade
 ```
 
 

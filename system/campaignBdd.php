@@ -48,7 +48,7 @@
 			// On créer la base de données si nécessaire
 			$bdd = new PDO('mysql:host=' . BDD_HOST, BDD_LOGIN, BDD_PASSWORD);
 			$bdd->query('CREATE DATABASE IF NOT EXISTS ' . BDD_NAME . ';');
-			$bdd = self::connect();
+			$bdd->query('USE ' . BDD_NAME . ';');
 			$bdd->query('CREATE TABLE IF NOT EXISTS campaign_list (' .
 							'id       INT(11)                                            AUTO_INCREMENT     COMMENT "Identifiant unique",' .
 							'name     VARCHAR(50)                                        CHARACTER SET utf8 COMMENT "Nom de la campagne",' .

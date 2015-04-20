@@ -48,8 +48,12 @@ Installation
 ------------
 
 Avant toute chose, il faut s'assurer que tous les pré-requis sont installés.
-Il suffit d'installer le projet dans un dossier en s'assurant que l'utilisateur php (en général www-data) possède tous les droits nécessaires à l'exécution et la création de fichiers dans ce répertoire.
+Par ailleurs, l'utilisateur www-data (utilisateur php par défaut) doit être propriétaire sur le dossier.
+Il suffit de se placer dans le dossier où TaT est installé puis d'utiliser la commande suivante :
 
+```bash
+sudo chown -R www-data .
+```
 Étape 1
 -------
 

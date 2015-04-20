@@ -30,7 +30,7 @@
         if($count_display > 0) {
             foreach($endedOrCancelledCampaign as $campaign)
                 echo '<li><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
-            echo '<li><a href="list_ended_cancelled.php"><b>Voir l\'intégralité des campagnes</b></a></li>' . "\n";
+            echo '<li><a href="list_ended_cancelled.php"><b>Voir l\'intégralité des campagnes terminées</b></a></li>' . "\n";
         } else {
 			echo '<li><a href="#">Aucune campagne</a></li>' . "\n";
 		}

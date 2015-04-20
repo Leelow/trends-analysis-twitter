@@ -62,10 +62,8 @@
 
 		<!-- Progress footer -->
         <div class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container text-center">
-				<div class="navbar-header">				
-					<p>Copyright &copy; TaT 2015</p>
-				</div>
+			<div class="container text-center">				
+				<p>Copyright &copy; TaT 2015</p>
 			</div>
         </div>
 	

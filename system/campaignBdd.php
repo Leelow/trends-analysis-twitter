@@ -323,14 +323,14 @@
 		// Retourne le timestamp de la campagne la plus ancienne
 		public static function getLastDateCampaign() {
 			$bdd = self::connect();
-			$query = $bdd->query("SELECT UNIX_TIMESTAMP(begin) FROM campaign_list ORDER BY begin DESC LIMIT 1;");
+			$query = $bdd->query("SELECT UNIX_TIMESTAMP(begin) FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED' ORDER BY begin DESC LIMIT 1;");
 			return $query->fetch()[0];
 		}
 		
 		// Retourne le timestamp de la campagne la plus récente
 		public static function getFirstDateCampaign() {
 			$bdd = self::connect();
-			$query = $bdd->query("SELECT UNIX_TIMESTAMP(begin) FROM campaign_list ORDER BY begin ASC LIMIT 1;");
+			$query = $bdd->query("SELECT UNIX_TIMESTAMP(begin) FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED' ORDER BY begin ASC LIMIT 1;");
 			return $query->fetch()[0];
 		}
 		

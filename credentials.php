@@ -18,7 +18,7 @@
 	
 	// ********************* Identfiants de l'interface web ********************** //
 	
-	define('PANEL_LOGIN',    '');
-	define('PANEL_PASSWORD', '');
+	define('PANEL_LOGIN',    'admin');
+	define('PANEL_PASSWORD', 'admin');
 
 ?>

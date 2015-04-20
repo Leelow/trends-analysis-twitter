@@ -8,6 +8,7 @@
 	<br>
 	<br>
 
+	<?php if($_SESSION['connect'] == false) { ?>
 	<div class="row">
 		<div class="bs-component">
 		  <div class="alert alert-dismissible alert-info">
@@ -16,6 +17,7 @@
 		  </div>
 		</div>
 	</div>
+	<?php } ?>
 
 	<br>
 	<div class="row">

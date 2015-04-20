@@ -320,6 +320,20 @@
 			return $query->fetchAll();
 		}
 		
+		// Retourne le timestamp de la campagne la plus ancienne
+		public static function getLastDateCampaign() {
+			$bdd = self::connect();
+			$query = $bdd->query("SELECT begin FROM campaign_list ORDER BY begin ASC LIMIT 1;");
+			return $query->fetch();
+		}
+		
+		// Retourne le timestamp de la campagne la plus récente
+		public static function getFirstDateCampaign() {
+			$bdd = self::connect();
+			$query = $bdd->query("SELECT begin FROM campaign_list ORDER BY begin DESC LIMIT 1;");
+			return $query->fetch();
+		}
+		
 		// **************************** Algorithme de nettoyage **************************** //
 		
 		// Insère une entrée dans la table

@@ -35,7 +35,7 @@
 				  <h4 class="modal-title">Campagnes à venir</h4>
 				</div>
 				<div class="modal-body">
-				  <p><?php displayScheduledCampaign() ?></p>
+				  <p><?php echo getLastDateCampaign() . ' ' . getFirstDateCampaign(); ?></p>
 				</div>
 			  </div>
 			</div>

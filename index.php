@@ -35,7 +35,7 @@
 				  <h4 class="modal-title">Campagnes à venir</h4>
 				</div>
 				<div class="modal-body">
-				  <p><?php echo date('H:i d/m/Y', campaignBdd::getLastDateCampaign()); ?></p>
+				  <p><?php echo date('H:i d/m/Y', campaignBdd::getFirstDateCampaign()); ?></p>
 				</div>
 			  </div>
 			</div>

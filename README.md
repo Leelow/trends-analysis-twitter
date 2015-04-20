@@ -8,7 +8,7 @@ Vous pouvez retrouver la [page de présentation](http://trends-analysis-twitter.
 Pré-requis
 ----------
 
-Le système est conçu et testé sous Ubuntu Server 14.10 mais il doit être compatible avec des versions antèrieures d'Ubuntu ou toute autre version de Linux.
+Le système est conçu et testé sous Ubuntu Server 14.10 mais il doit être compatible avec des versions antérieures d'Ubuntu ou toute autre version de Linux.
 Il est possible de le tester sous Windows avec [Wamp](http://www.wampserver.com/) par exemple. Il faut noter que certaines fonctions ne sont pas disponibles (telle que la planification de campagnes).
 
 Avant toute chose, assurez-vous que votre système est à jour :
@@ -42,13 +42,13 @@ sudo apt-get install openjdk-7-jre
 
 TaT se repose sur cron pour la planification de campagnes.
 
-Il se peut que TaT fonctionne correctement sur de sversion antèrieures, cependant nosu garantissons le bon fonctionnement de TaT sous les versions mentionnées plus haut.
+Il se peut que TaT fonctionne correctement sur des versions antérieures, cependant nous garantissons le bon fonctionnement de TaT sous les versions mentionnées plus hauts.
 
 Installation
 ------------
 
 Avant toute chose, il faut s'assurer que tous les pré-requis sont installés.
-Il suffit d'installer le projet dans un dossier en s'assurant que l'utilisateur php (en général www-data) possède tous les droits nécessaires à l'exécution et la création de fichiers dans ce repertoire.
+Il suffit d'installer le projet dans un dossier en s'assurant que l'utilisateur php (en général www-data) possède tous les droits nécessaires à l'exécution et la création de fichiers dans ce répertoire.
 
 Étape 1
 -------

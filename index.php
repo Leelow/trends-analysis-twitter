@@ -8,7 +8,7 @@
 	<br>
 	<div class="row">
 	  <div class="col-lg-6">
-		<h2>Quelques informations !</h2>
+		<h2>Panneau de contrôle</h2>
 		<div class="bs-component">
 		  <div class="modal">
 			<div class="modal-dialog">
@@ -22,7 +22,6 @@
 			  </div>
 			</div>
 		  </div>
-		<div style="display: none;" id="source-button" class="btn btn-primary btn-xs">&lt; &gt;</div></div>
 	  </div>
 	  <div class="col-lg-6">
 		<h2>Popovers</h2>

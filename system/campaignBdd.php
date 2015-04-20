@@ -345,6 +345,29 @@
 			return $total;
 		}
 		
+		// Retourne le poids total des tweets récupérés sur l'ensemble des campagnes
+		public static function getTotalTweetsSizeEndedOrCancelledCampaign() {
+			$list = self::getEndedOrCancelledCampaign();
+			$size = 0;
+			foreach($list as $campaign) {
+				$c = new Campaign($campaign['id']);
+				$size += $c->getTotalTweetsSize();
+			}
+			for ($i = 0; $size > 1024; $i++)
+				$size /= 1024;
+		
+			$units = explode(' ', 'o Ko Mo Go');
+			
+			if($units[$i] == 'Go')
+				$size = round($size, 1);
+			else
+				$size = round($size);
+			
+			$endIndex = strpos($size, '.') + 3;
+
+			return substr($size, 0, $endIndex) . ' ' . $units[$i];
+		}
+		
 		// **************************** Algorithme de nettoyage **************************** //
 		
 		// Insère une entrée dans la table

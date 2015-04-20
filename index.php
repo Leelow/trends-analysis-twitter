@@ -47,6 +47,7 @@
 					$number_tweets = campaignBdd::getTotalTweetsEndedOrCancelledCampaign();
 					
 					// Poids total des campagnes effectuées
+					$size_tweets = campaignBdd::getTotalTweetsSizeEndedOrCancelledCampaign();
 				
 				
 				?>

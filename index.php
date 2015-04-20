@@ -32,10 +32,24 @@
 			<div class="modal-dialog">
 			  <div class="modal-content">
 				<div class="modal-header">
-				  <h4 class="modal-title">Campagnes à venir</h4>
+				  <h4 class="modal-title">Informations</h4>
 				</div>
 				<div class="modal-body">
-				  <p><?php echo date('H:i d/m/Y', campaignBdd::getFirstDateCampaign()); ?></p>
+				<?php
+				
+					// Date de la première campagne
+					$first_date = date('d/m/Y', campaignBdd::getFirstDateCampaign());
+					
+					// Nombre de campagnes effectuées
+					$number_campaign = campaignBdd::getNumberEndedOrCancelledCampaign();
+					
+					// Nombre total de tweets récupérés
+					$number_tweets = campaignBdd::getTotalTweets();
+				
+				
+				?>
+				
+				  <p>Depuis le <?php echo $number_tweets ?>, </p>
 				</div>
 			  </div>
 			</div>

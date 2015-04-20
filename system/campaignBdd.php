@@ -277,6 +277,13 @@
 		}
 		
 		// **************************** Methodes communes **************************** //
+
+		// Retourne le nombre total de campagnes terminées/annulées
+		public static function getNumberEndedOrCancelledCampaign() {
+			$bdd = self::connect();
+			$query = $bdd->query("SELECT count(id) FROM campaign_list WHERE state = 'STARTED' or state = 'SCHEDULED';");		
+			return $query->fetch()[0];
+		}
 		
 		// Retourne si elle(s) existe(nt), le nom et l'id de la campagne en cours
 		public static function getStartedCampaign() {
@@ -332,6 +339,17 @@
 			$bdd = self::connect();
 			$query = $bdd->query("SELECT UNIX_TIMESTAMP(begin) FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED' ORDER BY begin ASC LIMIT 1;");
 			return $query->fetch()[0];
+		}
+		
+		// Retourne le nombre total de tweets récupérés sur l'ensemble des campagnes
+		public static function getTotalTweets() {
+			$list = self::getEndedOrCancelledCampaign();
+			$total = 0;
+			foreach($list as $campaign) {
+				$c = new Campaign($campaign['id']);
+				$total += $c->getTotalTweets();
+			}
+			return $total;
 		}
 		
 		// **************************** Algorithme de nettoyage **************************** //

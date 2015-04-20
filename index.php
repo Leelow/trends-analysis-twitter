@@ -7,8 +7,10 @@
 	<br>
 	<br>
 	<div class="row">
-	  <div class="col-lg-5">
 		<h2>Panneau de contrôle</h2>
+	</div>
+	<div class="row">
+	<div class="col-lg-6">
 		<div class="bs-component">
 		  <div class="modal">
 			<div class="modal-dialog">
@@ -23,7 +25,8 @@
 			</div>
 		  </div>
 	  </div>
-	  <div class="col-lg-5">
+	</div>
+	<div class="col-lg-6">
 		<div class="bs-component">
 		  <div class="modal">
 			<div class="modal-dialog">

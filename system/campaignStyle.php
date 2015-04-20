@@ -50,7 +50,7 @@
             foreach($endedOrCancelledCampaign as $campaign) {
                 $campaign_instance = new Campaign($campaign['id']);
                 $size = $campaign_instance->getSize();
-                echo '<li class="list-group-item"><span class="badge">' . $size . '</span><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
+                echo '<li class="list-group-item"><span class="badge">' . $size . '</span><span class="badge">' . $size . '</span><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
             }
             echo '</ul>' . "\n";
         } else {

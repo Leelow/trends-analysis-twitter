@@ -278,13 +278,6 @@
 		
 		// **************************** Methodes communes **************************** //
 
-		// Retourne le nombre total de campagnes terminées/annulées
-		public static function getNumberEndedOrCancelledCampaign() {
-			$bdd = self::connect();
-			$query = $bdd->query("SELECT count(id) FROM campaign_list WHERE state = 'STARTED' or state = 'SCHEDULED';");		
-			return $query->fetch()[0];
-		}
-		
 		// Retourne si elle(s) existe(nt), le nom et l'id de la campagne en cours
 		public static function getStartedCampaign() {
 			$bdd = self::connect();

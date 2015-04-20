@@ -351,7 +351,7 @@
 			$size = 0;
 			foreach($list as $campaign) {
 				$c = new Campaign($campaign['id']);
-				$size += $c->getTotalTweetsSize();
+				$size += $c->bdd->getTotalTweetsSize();
 			}
 			for ($i = 0; $size > 1024; $i++)
 				$size /= 1024;

@@ -27,17 +27,11 @@
         // On recupère les 10 campagnes terminées/annulées les plus récentes
 		$endedOrCancelledCampaign = CampaignBdd::getEndedOrCancelledCampaign();
         $count_display = count($endedOrCancelledCampaign);
-        echo $count_display;
-        if($count_display > 10) {
-            foreach($endedOrCancelledCampaign as $campaign) {
+        if($count_display > 0) {
+            foreach($endedOrCancelledCampaign as $campaign)
                 echo '<li><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";
-            }
-            //$count_total = CampaignBdd::getNumberEndedOrCancelledCampaign();
-            echo '<li><a href="list_ended_cancelled.php"><b>Voir la totalité des campagnes</b></a></li>' . "\n";
-        } else if($count_display > 0) {
-			foreach($endedOrCancelledCampaign as $campaign)
-				echo '<li><a href="view.php?id=' . $campaign['id'] . '">' . $campaign['name'] . '</a></li>' . "\n";	
-		} else {
+            echo '<li><a href="list_ended_cancelled.php"><b>Voir l\'intégralité des campagnes</b></a></li>' . "\n";
+        } else {
 			echo '<li><a href="#">Aucune campagne</a></li>' . "\n";
 		}
 	}

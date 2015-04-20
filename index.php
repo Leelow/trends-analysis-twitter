@@ -5,6 +5,9 @@
 	
 ?>
 
+	<br>
+	<br>
+
 	<div class="row">
 		<div class="bs-component">
 		  <div class="alert alert-dismissible alert-info">
@@ -14,7 +17,6 @@
 		</div>
 	</div>
 
-	<br>
 	<br>
 	<div class="row">
 		<h2>Panneau de contrôle</h2>

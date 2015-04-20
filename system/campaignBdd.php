@@ -310,7 +310,7 @@
         public static function getNumberEndedOrCancelledCampaign() {
             $bdd = self::connect();
             $query = $bdd->query("SELECT COUNT(id) FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED';");
-            return $query->fetch();
+            return $query->fetch()[0];
         }
 		
 		// Retourne la liste des campagnes programmées avec leur date de programmation

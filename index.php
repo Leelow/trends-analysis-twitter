@@ -62,11 +62,9 @@
 
 		<!-- Progress footer -->
         <div class="navbar navbar-default navbar-fixed-bottom">
-			<div class="container">
-				<div class="col-lg-12">
-					<p>Copyright &copy; TaT 2015</p>
-				</div>
-            </div>
+			<div class="container text-center">
+				<p>Copyright &copy; TaT 2015</p>
+			</div>
         </div>
 	
 <?php

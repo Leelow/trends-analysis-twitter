@@ -295,9 +295,16 @@
 		// Retourne si elle(s) existe(nt), le nom et l'id des campagnes terminées
 		public static function getEndedOrCancelledCampaign() {
 			$bdd = self::connect();
-			$query = $bdd->query("SELECT id, name FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED';");		
+			$query = $bdd->query("SELECT id, name FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED' ORDER BY date DESC LIMIT 10;");
 			return $query->fetchAll();
 		}
+
+        // Retourne le nombre de campagnes terminées
+        public static function getNumberEndedOrCancelledCampaign() {
+            $bdd = self::connect();
+            $query = $bdd->query("SELECT COUNT(id) FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED';");
+            return $query->fetch();
+        }
 		
 		// **************************** Algorithme de nettoyage **************************** //
 		

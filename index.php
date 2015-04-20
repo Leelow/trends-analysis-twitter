@@ -4,6 +4,16 @@
 	require_once DIR_INCLUDES . 'header.inc.php';
 	
 ?>
+
+	<div class="row">
+		<div class="bs-component">
+		  <div class="alert alert-dismissible alert-info">
+			<button type="button" class="close" data-dismiss="alert">×</button>
+			Vous être actuellement en mode invité. Vous pouvez vous connecter <strong><a href="login.php" class="alert-link">ici</a></strong>.
+		  </div>
+		</div>
+	</div>
+
 	<br>
 	<br>
 	<div class="row">

@@ -42,6 +42,7 @@
 					
 					// Nombre de campagnes effectuées
 					$number_campaign = campaignBdd::getNumberEndedOrCancelledCampaign();
+					$print_campagnes = ($number_campaign == 1) ? 'campagnes' : 'campagne';
 					
 					// Nombre total de tweets récupérés
 					$number_tweets = number_format(campaignBdd::getTotalTweetsEndedOrCancelledCampaign(), 0, ',', '.');
@@ -51,7 +52,7 @@
 				
 				?>
 				
-				  <p>Depuis le <?php echo $first_date ?>, <?php echo $number_tweets ?> ont été récoltés sur <?php echo $number_campaign ?> campagnes. Cela représente environ <?php echo $size_tweets ?>.</p>
+				  <p>Depuis le <b><?php echo $first_date ?></b>, <b><?php echo $number_tweets ?></b> ont été récoltés sur <b><?php echo $number_campaign  . ' ' . $print_campagnes ?></b>. Cela représente environ <b><?php echo $size_tweets ?></b>.</p>
 				</div>
 			  </div>
 			</div>

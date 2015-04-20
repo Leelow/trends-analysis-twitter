@@ -44,15 +44,14 @@
 					$number_campaign = campaignBdd::getNumberEndedOrCancelledCampaign();
 					
 					// Nombre total de tweets récupérés
-					$number_tweets = campaignBdd::getTotalTweetsEndedOrCancelledCampaign();
+					$number_tweets = number_format(campaignBdd::getTotalTweetsEndedOrCancelledCampaign(), 0, ',', '.');
 					
 					// Poids total des campagnes effectuées
 					$size_tweets = campaignBdd::getTotalTweetsSizeEndedOrCancelledCampaign();
 				
-				
 				?>
 				
-				  <p>Depuis le <?php echo $size_tweets ?>, </p>
+				  <p>Depuis le <?php echo $number_tweets ?>, </p>
 				</div>
 			  </div>
 			</div>

@@ -98,6 +98,11 @@ Utilisation
 -----------
 
 Si tout s'est bien déroulé, vous pouvez facilement accéder à l'interface web et utiliser TaT !
+Il est possible de vérifier que l'installation s'est bien déroulée en démarrant une campagne en ligne de commande :
+```bash
+  sudo php scripts/new_started_campaign.php nom_campagne now 15 "#Arsenal" "#Chelsea"
+```
+Une campagne portant sur les mots-clés "#Arsenal" et "#Chelsea" sera automatiquement démarrée pour une durée de 15 minutes.
 
 Bibliothèques utilisées
 -----------------------

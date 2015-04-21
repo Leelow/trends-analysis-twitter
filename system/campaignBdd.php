@@ -295,14 +295,14 @@
         // Retourne si elle(s) existe(nt), le nom et l'id des campagnes terminées
         public static function getEndedOrCancelledCampaign() {
             $bdd = self::connect();
-            $query = $bdd->query("SELECT id, name, UNIX_TIMESTAMP(begin) FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED' ORDER BY begin DESC;");
+            $query = $bdd->query("SELECT id, name, UNIX_TIMESTAMP(begin), length FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED' ORDER BY begin DESC;");
             return $query->fetchAll();
         }
 
 		// Retourne si elle(s) existe(nt), le nom et l'id des campagnes terminées
 		public static function getEndedOrCancelledCampaignLimit() {
 			$bdd = self::connect();
-			$query = $bdd->query("SELECT id, name, UNIX_TIMESTAMP(begin) FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED' ORDER BY begin DESC LIMIT 10;");
+			$query = $bdd->query("SELECT id, name, UNIX_TIMESTAMP(begin), length FROM campaign_list WHERE state = 'ENDED' or state = 'CANCELLED' ORDER BY begin DESC LIMIT 10;");
 			return $query->fetchAll();
 		}
 

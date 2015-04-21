@@ -105,4 +105,6 @@ Bibliothèques utilisées
 - [Algortihme TF-IDF](https://github.com/valent141/trends-analysis-twitter-tfidf)
 - [Algorithme Newman-Girvan](https://github.com/ElyKar/Trends-Analysis)
 - [Phirehose](https://github.com/fennb/phirehose)
+- [Google Charts](https://developers.google.com/chart/)
+- [Bootstrap](http://getbootstrap.com/)
 - [Codebird](https://github.com/jublonet/codebird-php)

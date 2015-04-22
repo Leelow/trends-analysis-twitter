@@ -32,11 +32,21 @@
 
     }
 
+    $data = $entete . $csv;
+/*
     header('Content-Encoding: UTF-8');
     header('Content-type: text/csv; charset=UTF-8');
-    header('Content-Disposition:attachment;filename="stats_execution_time.csv"');
+    header('Content-Disposition:attachment;filename="stats_execution_time.csv"');*/
 
-    echo $entete . $csv;
+    header ( 'HTTP/1.1 200 OK' );
+    header ( 'Date: ' . date ( 'D M j G:i:s T Y' ) );
+    header ( 'Last-Modified: ' . date ( 'D M j G:i:s T Y' ) );
+    header ( 'Content-Type: application/vnd.ms-excel') ;
+    header ( 'Content-Disposition: attachment;filename=export.csv' );
+    print chr(255) . chr(254) . mb_convert_encoding($data, 'UTF-16LE', 'UTF-8');
+    exit;
+
+
 
     echo "\xEF\xBB\xBF"; // UTF-8 BOM
 

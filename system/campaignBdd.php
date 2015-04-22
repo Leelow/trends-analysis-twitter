@@ -295,7 +295,7 @@
 
             $total = str_replace($default_value, 0, $clean_time) + str_replace($default_value, 0, $ng_time) + str_replace($default_value, 0, $tf_idf_time) + str_replace($default_value, 0, $sugr_time);
 
-            $exploitable = ($clean_time != $default_value) and ($ng_time != $default_value) and ($tf_idf_time != $default_value) and ($sugr_time != $default_value);
+            $exploitable = (($clean_time != $default_value) and ($ng_time != $default_value) and ($tf_idf_time != $default_value) and ($sugr_time != $default_value)) ? 'Oui' : 'Non';
 
             return array('clean'        => $clean_time,
                          'ng'           => $ng_time,

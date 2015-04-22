@@ -32,7 +32,8 @@
 
     }
 
-    header('content-type:application/csv;charset=UTF-8');
+    header('Content-Encoding: UTF-8');
+    header('Content-type: text/csv; charset=UTF-8');
     header('Content-Disposition:attachment;filename="stats_execution_time.csv"');
 
     echo $entete . $csv;

@@ -293,10 +293,13 @@
             $query = $this->bdd->prepare('SELECT AVG(time) FROM ' . $this->TABLE_CAMPAIGN_SUGAR . ';');
             $sugr_time = $query->execute() ? round($query->fetch()['AVG(time)'], 1) : $default_value;
 
+            $total = str_replace($default_value, 0, $clean_time) + str_replace($default_value, 0, $ng_time) + str_replace($default_value, 0, $tf_idf_time) + str_replace($default_value, 0, $sugr_time);
+
             return array('clean'    => $clean_time,
                          'ng'       => $ng_time,
                          'tf_idf'   => $tf_idf_time,
-                         'sugr'     => $sugr_time);
+                         'sugr'     => $sugr_time,
+                         'total'    => $total);
         }
 
 		// **************************** Methodes communes **************************** //

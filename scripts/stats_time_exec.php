@@ -4,7 +4,7 @@
     require_once DIR_SYSTEM                 . 'campaign.php';
 
     // Entête du fichier CSV
-    $entete = 'Nom;Moyenne tweets/minute;Clean;Newman-Girvan;TF-IDF;SUGR' . "\n";
+    $entete = 'Nom;Moyenne tweets/minute;Clean;Newman-Girvan;TF-IDF;SUGR;Total' . "\n";
 
     // On recupère la liste des id des campagnes terminées/annulées
     $list = CampaignBdd::getEndedOrCancelledCampaign();
@@ -26,7 +26,7 @@
 
         $time = $campaign->bdd->getExecTimeAlg();
 
-        $line .= $time['clean'] . ';' . $time['ng'] . ';' . $time['tf_idf'] . ';' . $time['sugr'];
+        $line .= $time['clean'] . ';' . $time['ng'] . ';' . $time['tf_idf'] . ';' . $time['sugr'] . ';' . $time['total'];
 
         $csv .= $line . "\n";
 

@@ -201,7 +201,7 @@
 			return $this->bdd->getKeywords();		
 		}
 		
-		// Affiche la liste des hashtags ou mots-clés associés à la campagne
+		// DEPRECATED
 		public function getTotalTwittos() {
 			return $this->bdd->getTotalTwittos();		
 		}

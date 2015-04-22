@@ -275,7 +275,30 @@
 			$query = $this->bdd->prepare('UPDATE campaign_list SET step = ?, begin = begin WHERE id = ?;'); // Permet de s'assure qu'il n'y ait pas de maj du timestamp
 			$query->execute(array($step, $this->campaign->id));
 		}
-		
+
+        // Retourne les temps d'exécution de chacun des algorithmes d'une campagne
+        public function getExecTimeAlg() {
+
+            $default_value = 'X';
+
+            $query = $this->bdd->prepare('SELECT AVG(time) FROM ' . $this->TABLE_CAMPAIGN_CLEAN . ';');
+            $clean_time = $query->execute() ? round($query->fetch()['AVG(time)'], 1) : $default_value;
+
+            $query = $this->bdd->prepare('SELECT AVG(time) FROM ' . $this->TABLE_CAMPAIGN_NG . ';');
+            $ng_time = $query->execute() ? round($query->fetch()['AVG(time)'], 1) : $default_value;
+
+            $query = $this->bdd->prepare('SELECT AVG(time) FROM ' . $this->TABLE_CAMPAIGN_TF_IDF . ';');
+            $tf_idf_time = $query->execute() ? round($query->fetch()['AVG(time)'], 1) : $default_value;
+
+            $query = $this->bdd->prepare('SELECT AVG(time) FROM ' . $this->TABLE_CAMPAIGN_SUGAR . ';');
+            $sugr_time = $query->execute() ? round($query->fetch()['AVG(time)'], 1) : $default_value;
+
+            return array('clean'    => $clean_time,
+                         'ng'       => $ng_time,
+                         'tf_idf'   => $tf_idf_time,
+                         'sugr'     => $sugr_time);
+        }
+
 		// **************************** Methodes communes **************************** //
 
 		// Retourne si elle(s) existe(nt), le nom et l'id de la campagne en cours
@@ -346,28 +369,29 @@
 		}
 		
 		// Retourne le poids total des tweets récupérés sur l'ensemble des campagnes
-		public static function getTotalTweetsSizeEndedOrCancelledCampaign() {
-			$list = self::getEndedOrCancelledCampaign();
-			$size = 0;
-			foreach($list as $campaign) {
-				$c = new Campaign($campaign['id']);
-				$size += $c->bdd->getTotalTweetsSize();
-			}
-			for ($i = 0; $size > 1024; $i++)
-				$size /= 1024;
-		
-			$units = explode(' ', 'o Ko Mo Go');
-			
-			if($units[$i] == 'Go')
-				$size = round($size, 1);
-			else
-				$size = round($size);
-			
-			$endIndex = strpos($size, '.') + 3;
+		public static function getTotalTweetsSizeEndedOrCancelledCampaign()
+        {
+            $list = self::getEndedOrCancelledCampaign();
+            $size = 0;
+            foreach ($list as $campaign) {
+                $c = new Campaign($campaign['id']);
+                $size += $c->bdd->getTotalTweetsSize();
+            }
+            for ($i = 0; $size > 1024; $i++)
+                $size /= 1024;
 
-			return substr($size, 0, $endIndex) . ' ' . $units[$i];
-		}
-		
+            $units = explode(' ', 'o Ko Mo Go');
+
+            if ($units[$i] == 'Go')
+                $size = round($size, 1);
+            else
+                $size = round($size);
+
+            $endIndex = strpos($size, '.') + 3;
+
+            return substr($size, 0, $endIndex) . ' ' . $units[$i];
+        }
+
 		// **************************** Algorithme de nettoyage **************************** //
 		
 		// Insère une entrée dans la table

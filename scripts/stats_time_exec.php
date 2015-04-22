@@ -38,4 +38,6 @@
 
     echo $entete . $csv;
 
+    echo "\xEF\xBB\xBF"; // UTF-8 BOM
+
 ?>

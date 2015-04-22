@@ -280,18 +280,19 @@
         public function getExecTimeAlg() {
 
             $default_value = 'X';
+            $round = 2;
 
             $query = $this->bdd->prepare('SELECT AVG(time) FROM ' . $this->TABLE_CAMPAIGN_CLEAN . ';');
-            $clean_time = $query->execute() ? round($query->fetch()['AVG(time)'], 1) : $default_value;
+            $clean_time = $query->execute() ? round($query->fetch()['AVG(time)'], $round) : $default_value;
 
             $query = $this->bdd->prepare('SELECT AVG(time) FROM ' . $this->TABLE_CAMPAIGN_NG . ';');
-            $ng_time = $query->execute() ? round($query->fetch()['AVG(time)'], 1) : $default_value;
+            $ng_time = $query->execute() ? round($query->fetch()['AVG(time)'], $round) : $default_value;
 
             $query = $this->bdd->prepare('SELECT AVG(time) FROM ' . $this->TABLE_CAMPAIGN_TF_IDF . ';');
-            $tf_idf_time = $query->execute() ? round($query->fetch()['AVG(time)'], 1) : $default_value;
+            $tf_idf_time = $query->execute() ? round($query->fetch()['AVG(time)'], $round) : $default_value;
 
             $query = $this->bdd->prepare('SELECT AVG(time) FROM ' . $this->TABLE_CAMPAIGN_SUGAR . ';');
-            $sugr_time = $query->execute() ? round($query->fetch()['AVG(time)'], 1) : $default_value;
+            $sugr_time = $query->execute() ? round($query->fetch()['AVG(time)'], $round) : $default_value;
 
             $total = str_replace($default_value, 0, $clean_time) + str_replace($default_value, 0, $ng_time) + str_replace($default_value, 0, $tf_idf_time) + str_replace($default_value, 0, $sugr_time);
 

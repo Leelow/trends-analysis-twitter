@@ -9,6 +9,9 @@
     $size = 3000;
     $step = max(0, $_GET['step']);
 
+    // Exclusion
+    $exclusion = [41, 56, 57, 62, 95];
+
     // Entête du fichier CSV
     $entete = 'Nb tweets;Min;Quartile 1;Médiane;Moyenne;Quartile 3;Max' . "\n";
 
@@ -20,28 +23,32 @@
     // Pour chacune des campagnes, on recupère l'ensemble des statistiques de temps d'exécution
     foreach(CampaignBdd::getEndedOrCancelledCampaign() as $campaign) {
 
-        $campaign = new Campaign($campaign['id']);
+        if(!in_array($campaign['id'], $exclusion)) {
 
-        // On recupère les temps d'eéxécution des tweets de la campagne
-        $time = $campaign->bdd->getExecTimeTotalAlg();
+            $campaign = new Campaign($campaign['id']);
 
-        // On fusionne les données
-        for($i = 0; $i < count($time['clean']); $i++) {
-            $tweets = $time['clean'][$i]['tweets'];
+            // On recupère les temps d'eéxécution des tweets de la campagne
+            $time = $campaign->bdd->getExecTimeTotalAlg();
 
-            $temp = array();
+            // On fusionne les données
+            for ($i = 0; $i < count($time['clean']); $i++) {
+                $tweets = $time['clean'][$i]['tweets'];
 
-            $temp['clean']  = ($time['clean']   != null) ? $time['clean'][$i]['time']   : '';
-            $temp['ng']     = ($time['ng']      != null) ? $time['ng'][$i]['time']      : '';
-            $temp['tf_idf'] = ($time['tf_idf']  != null) ? $time['tf_idf'][$i]['time']  : '';
-            $temp['sugr']   = ($time['sugr']    != null) ? $time['sugr'][$i]['time']    : '';
+                $temp = array();
 
-            $temp['total']  = (($time['clean'][$i]   != null) ? $time['clean'][$i]['time']   : 0) +
-                              (($time['ng'][$i]      != null) ? $time['ng'][$i]['time']      : 0) +
-                              (($time['tf_idf'][$i]  != null) ? $time['tf_idf'][$i]['time']  : 0) +
-                              (($time['sugr'][$i]    != null) ? $time['sugr'][$i]['time']    : 0);
+                $temp['clean']  = ($time['clean']   != null) ? $time['clean'][$i]['time']   : '';
+                $temp['ng']     = ($time['ng']      != null) ? $time['ng'][$i]['time']      : '';
+                $temp['tf_idf'] = ($time['tf_idf']  != null) ? $time['tf_idf'][$i]['time']  : '';
+                $temp['sugr']   = ($time['sugr']    != null) ? $time['sugr'][$i]['time']    : '';
 
-            array_push($time_merge[$tweets], $temp);
+                $temp['total'] = (($time['clean'][$i] != null) ? $time['clean'][$i]['time'] : 0) +
+                    (($time['ng'][$i] != null) ? $time['ng'][$i]['time'] : 0) +
+                    (($time['tf_idf'][$i] != null) ? $time['tf_idf'][$i]['time'] : 0) +
+                    (($time['sugr'][$i] != null) ? $time['sugr'][$i]['time'] : 0);
+
+                array_push($time_merge[$tweets], $temp);
+            }
+
         }
 
     }

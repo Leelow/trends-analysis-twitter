@@ -43,14 +43,52 @@
     }
 
     // On fusionne les données disponibles pour chaque campagne en un unique tableau
-    /*$data = array($size);
+    $data = array($size);
 
     for($i = 0; $i < $size; $i++) {
-        if()
-    }*/
+        if(count($time_merge[$i]) == 0) {
+            $data[$i] = array($i, '', '', '', '', '', '', '');
+        } else if(count($time_merge[$i]) == 1) {
+            $total = $time_merge[$i][0]['total'];
+            $data[$i] = array($i, $total, $total, $total, $total, $total, $total, $total);
+        } else {
+            $totals = array();
+            for($j = 0; $j < count($time_merge[$i]); $j++)
+                array_push($totals, $time_merge[$i][$j]['total']);
+            asort($totals);
 
+            // On dispose d'un simple tableau de valeurs triées en ordre croissant, on peut effectuer des mesures statistiques dessus
+            //'Nb tweets;Min;Quartile 1;Médiane;Moyenne;Quartile 3;Max'
+            $min    = $totals[0];
+            $max    = $totals[count($totals) - 1];
 
-    /*$data = $entete . $csv;
+            $moyenne = array_sum($totals) / count($totals);
+
+            // Calcul des quartiles
+            $quartile_1 = $totals[ceil((count($totals) / 4)) - 1];
+            $quartile_3 = $totals[ceil(((count($totals) / 4) * 3)) - 1];
+
+            // Calcul de la medianne
+            if(count($totals) % 2 == 1) {
+                $mediane = $totals[((count($totals) + 1) / 2 - 1)];
+            } else {
+                $val1 = $totals[(count($totals) / 2) - 1];
+                $val2 = $totals[((count($totals) / 2) + 1) - 1];
+                $mediane = ($val1 + $val2) / 2;
+            }
+
+            $data[$i] = array($i, $min, $quartile_1, $mediane, $moyenne, $quartile_3, $max);
+        }
+    }
+
+    $csv = '';
+
+    // On imprime les données pour créer un CSV
+    for($i = 0; $i < $size; $i++) {
+        $csv .= $data[$i][0] . ';' .  $data[$i][1] . ';' . $data[$i][2] . ';' . $data[$i][3] . ';' . $data[$i][4] .';' . $data[$i][5] . ';' . $data[$i][6] . "\n";
+    }
+
+    $data = $entete . $csv;
 
     header ( 'HTTP/1.1 200 OK' );
     header ( 'Date: ' . date ( 'D M j G:i:s T Y' ) );
@@ -58,8 +96,6 @@
     header ( 'Content-Type: application/vnd.ms-excel') ;
     header ( 'Content-Disposition: attachment;filename=export.csv' );
     print chr(255) . chr(254) . mb_convert_encoding($data, 'UTF-16LE', 'UTF-8');
-    exit;*/
-
-    print_r($time_merge);
+    exit;
 
 ?>

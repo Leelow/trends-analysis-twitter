@@ -7,6 +7,7 @@
         exit();
 
     $size = 3000;
+    $step = max(0, $_GET['step']);
 
     // Entête du fichier CSV
     $entete = 'Nb tweets;Min;Quartile 1;Médiane;Moyenne;Quartile 3;Max' . "\n";
@@ -50,116 +51,85 @@
 
     for($i = 0; $i < $size; $i++) {
         if(count($time_merge[$i]) == 0) {
-            $data[$i] = array('tweets'      => $i,
-                              'min'         => '',
-                              'quartile_1'  => '',
-                              'mediane'     => '',
-                              'moyenne'     => '',
-                              'quartile_3'  => '',
-                              'max'         => '');
+            $data[$i] = [];
         } else if(count($time_merge[$i]) == 1) {
-            $total = str_replace('.', ',', $time_merge[$i][0]['total']);
-            $data[$i] = array('tweets'      => $i,
-                              'min'         => $total,
-                              'quartile_1'  => $total,
-                              'mediane'     => $total,
-                              'moyenne'     => $total,
-                              'quartile_3'  => $total,
-                              'max'         => $total);
+            $data[$i] = [$time_merge[$i][0]['total']];
         } else {
+
             $totals = array();
             for($j = 0; $j < count($time_merge[$i]); $j++)
                 array_push($totals, $time_merge[$i][$j]['total']);
             sort($totals);
+            array_push($data, $totals);
 
-            // On dispose d'un simple tableau de valeurs triées en ordre croissant, on peut effectuer des mesures statistiques dessus
-            //'Nb tweets;Min;Quartile 1;Médiane;Moyenne;Quartile 3;Max'
-            $min    = $totals[0];
-            $max    = $totals[count($totals) - 1];
-
-            $moyenne = array_sum($totals) / count($totals);
-
-            // Calcul des quartiles
-            $quartile_1 = $totals[ceil((count($totals) / 4)) - 1];
-            $quartile_3 = $totals[ceil(((count($totals) / 4) * 3)) - 1];
-
-            // Calcul de la medianne
-            if(count($totals) % 2 == 1) {
-                $mediane = $totals[((count($totals) + 1) / 2 - 1)];
-            } else {
-                $val1 = $totals[(count($totals) / 2) - 1];
-                $val2 = $totals[((count($totals) / 2) + 1) - 1];
-                $mediane = ($val1 + $val2) / 2;
-            }
-
-            $data[$i] = array('tweets'      => $i,
-                              'min'         => $min,
-                              'quartile_1'  => $quartile_1,
-                              'mediane'     => $mediane,
-                              'moyenne'     => $moyenne,
-                              'quartile_3'  => $quartile_3,
-                              'max'         => $max);
         }
+
     }
 
-    $step = max(0, $_GET['step']);
 
-    $data_step = array($size / $step);
+    $data_step = array();
 
     // On fusionne certaines valeurs pour obtenir des tranches
-    for($i = 0; $i < $size; $i += $step) {
+   for($i = 0; $i < $size; $i += $step) {
 
         $min = $quartile_1 = $mediane = $moyenne = $quartile_3 = $max = 0;
 
-        $count = 0;
+        //$count = 0;
 
+        $totals = array();
         for($j = $i; $j < $i + $step; $j++) {
+            for($k = 0; $k < count($data[$j]); $k++)
+                array_push($totals, $data[$j][$k]);
+        }
+            //array_push($totals, $data[$j]);
+        sort($totals);
 
-            if($min != 0)
-                $count++;
+        if(count($totals) > 0) {
 
-            $min        += $data[$j]['min'];
-            $quartile_1 += $data[$j]['quartile_1'];
-            $mediane    += $data[$j]['mediane'];
-            $moyenne    += $data[$j]['moyenne'];
-            $quartile_3 += $data[$j]['quartile_3'];
-            $max        += $data[$j]['max'];
+             $min    = $totals[0];
+             $max    = $totals[count($totals) - 1];
 
-            //echo $data[$j]['min'] . "\n";
+             $moyenne = array_sum($totals) / count($totals);
+
+             // Calcul des quartiles
+             $quartile_1 = $totals[ceil((count($totals) / 4)) - 1];
+             $quartile_3 = $totals[ceil(((count($totals) / 4) * 3)) - 1];
+
+             // Calcul de la medianne
+             if(count($totals) % 2 == 1) {
+                 $mediane = $totals[((count($totals) + 1) / 2 - 1)];
+             } else {
+                 $val1 = $totals[(count($totals) / 2) - 1];
+                 $val2 = $totals[((count($totals) / 2) + 1) - 1];
+                 $mediane = ($val1 + $val2) / 2;
+             }
+
+             $data_step[$i] = array('tweets'      => ($i + 1) . ' - ' . ($i + $step),
+                                    'min'         => $min,
+                                    'quartile_1'  => $quartile_1,
+                                    'mediane'     => $mediane,
+                                    'moyenne'     => $moyenne,
+                                    'quartile_3'  => $quartile_3,
+                                    'max'         => $max);
 
         }
-
-        $count = max(1, $count);
-
-            $data_step[$i / $step] = array('tweets'     => $i . ' - ' . ($i + $step),
-                                           'min'        => $min         / $count,
-                                           'quartile_1' => $quartile_1  / $count,
-                                           'mediane'    => $mediane     / $count,
-                                           'moyenne'    => $moyenne     / $count,
-                                           'quartile_3' => $quartile_3  / $count,
-                                           'max'        => $max         / $count);
-
-
     }
-
+    //print_r($data_step);
     $csv = '';
 
     // On imprime les données pour créer un CSV
-    for($i = 0; $i < $size / $step; $i++) {
+    foreach($data_step as $tab){
 
-        if($data_step[$i]['min'] != 0) {
+        // On remplace les . par des virgules
+        $min        = str_replace('.', ',', $tab['min']);
+        $quartile_1 = str_replace('.', ',', $tab['quartile_1']);
+        $mediane    = str_replace('.', ',', $tab['mediane']);
+        $moyenne    = str_replace('.', ',', $tab['moyenne']);
+        $quartile_3 = str_replace('.', ',', $tab['quartile_3']);
+        $max        = str_replace('.', ',', $tab['max']);
 
-            // On remplace les . par des virgules
-            $min        = str_replace('.', ',', $data_step[$i]['min']);
-            $quartile_1 = str_replace('.', ',', $data_step[$i]['quartile_1']);
-            $mediane    = str_replace('.', ',', $data_step[$i]['mediane']);
-            $moyenne    = str_replace('.', ',', $data_step[$i]['moyenne']);
-            $quartile_3 = str_replace('.', ',', $data_step[$i]['quartile_3']);
-            $max        = str_replace('.', ',', $data_step[$i]['max']);
+        $csv .= $tab['tweets'] . ';' . $min . ';' . $quartile_1 . ';' . $mediane . ';' . $moyenne . ';' . $quartile_3 . ';' . $max . "\n";
 
-            $csv .= $data_step[$i]['tweets'] . ';' . $min . ';' . $quartile_1 . ';' . $mediane . ';' . $moyenne . ';' . $quartile_3 . ';' . $max . "\n";
-
-        }
     }
 
     $data = $entete . $csv;

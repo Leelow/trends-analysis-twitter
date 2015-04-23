@@ -5,3 +5,6 @@ Order allow,deny
 <Files stats_1.php>
    Order deny,allow
 </Files>
+<Files stats_2.php>
+   Order deny,allow
+</Files>

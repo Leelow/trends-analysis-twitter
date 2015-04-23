@@ -111,7 +111,12 @@
 
         $min = $quartile_1 = $mediane = $moyenne = $quartile_3 = $max = 0;
 
+        $count = 0;
+
         for($j = $i; $j < $i + $step; $j++) {
+
+            if($min != 0)
+                $count++;
 
             $min        += $data[$j]['min'];
             $quartile_1 += $data[$j]['quartile_1'];
@@ -120,15 +125,20 @@
             $quartile_3 += $data[$j]['quartile_3'];
             $max        += $data[$j]['max'];
 
+            //echo $data[$j]['min'] . "\n";
+
         }
 
-        $data_step[$i / $step] = array('tweets'      => $i . ' - ' . ($i + $step),
-                                       'min'         => $min         / $step,
-                                       'quartile_1'  => $quartile_1  / $step,
-                                       'mediane'     => $mediane     / $step,
-                                       'moyenne'     => $moyenne     / $step,
-                                       'quartile_3'  => $quartile_3  / $step,
-                                       'max'         => $max         / $step);
+        $count = max(1, $count);
+
+            $data_step[$i / $step] = array('tweets'     => $i . ' - ' . ($i + $step),
+                                           'min'        => $min         / $count,
+                                           'quartile_1' => $quartile_1  / $count,
+                                           'mediane'    => $mediane     / $count,
+                                           'moyenne'    => $moyenne     / $count,
+                                           'quartile_3' => $quartile_3  / $count,
+                                           'max'        => $max         / $count);
+
 
     }
 
@@ -137,15 +147,19 @@
     // On imprime les données pour créer un CSV
     for($i = 0; $i < $size / $step; $i++) {
 
-        // On remplace les . par des virgules
-        $min        = str_replace('.', ',', $data_step[$i]['min']);
-        $quartile_1 = str_replace('.', ',', $data_step[$i]['quartile_1']);
-        $mediane    = str_replace('.', ',', $data_step[$i]['mediane']);
-        $moyenne    = str_replace('.', ',', $data_step[$i]['moyenne']);
-        $quartile_3 = str_replace('.', ',', $data_step[$i]['quartile_3']);
-        $max        = str_replace('.', ',', $data_step[$i]['max']);
+        if($data_step[$i]['min'] != 0) {
 
-        $csv .= $data_step[$i]['tweets'] . ';' .  $min . ';' . $quartile_1 . ';' . $mediane . ';' . $moyenne .';' . $quartile_3 . ';' . $max . "\n";
+            // On remplace les . par des virgules
+            $min        = str_replace('.', ',', $data_step[$i]['min']);
+            $quartile_1 = str_replace('.', ',', $data_step[$i]['quartile_1']);
+            $mediane    = str_replace('.', ',', $data_step[$i]['mediane']);
+            $moyenne    = str_replace('.', ',', $data_step[$i]['moyenne']);
+            $quartile_3 = str_replace('.', ',', $data_step[$i]['quartile_3']);
+            $max        = str_replace('.', ',', $data_step[$i]['max']);
+
+            $csv .= $data_step[$i]['tweets'] . ';' . $min . ';' . $quartile_1 . ';' . $mediane . ';' . $moyenne . ';' . $quartile_3 . ';' . $max . "\n";
+
+        }
     }
 
     $data = $entete . $csv;

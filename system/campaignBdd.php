@@ -276,7 +276,30 @@
 			$query->execute(array($step, $this->campaign->id));
 		}
 
-        // Retourne les temps d'exécution de chacun des algorithmes d'une campagne
+        // Retourne l'ensemble des temps d'exécution des algorithmes d'une campagne
+        public function getExecTimeTotalAlg() {
+
+            $query = $this->bdd->prepare('SELECT time, tweets FROM ' . $this->TABLE_CAMPAIGN_CLEAN . ';');
+            $clean_time = $query->execute() ? $query->fetchAll() : null;
+
+            $query = $this->bdd->prepare('SELECT time, tweets FROM ' . $this->TABLE_CAMPAIGN_NG . ';');
+            $ng_time = $query->execute() ? $query->fetchAll() : null;
+
+            $query = $this->bdd->prepare('SELECT time, tweets FROM ' . $this->TABLE_CAMPAIGN_TF_IDF . ';');
+            $tf_idf_time = $query->execute() ? $query->fetchAll() : null;
+
+            $query = $this->bdd->prepare('SELECT time, tweets FROM ' . $this->TABLE_CAMPAIGN_SUGAR . ';');
+            $sugr_time = $query->execute() ? $query->fetchAll() : null;
+
+            return array('clean'    => $clean_time,
+                         'ng'       => $ng_time,
+                         'tf_idf'   => $tf_idf_time,
+                         'sugr'     => $sugr_time
+                        );
+
+        }
+
+        // Retourne les temps d'exécution moyen de chacun des algorithmes d'une campagne
         public function getExecTimeAlg() {
 
             $default_value = 'X';

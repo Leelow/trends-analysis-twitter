@@ -2,3 +2,6 @@ Order allow,deny
 <Files stats_time_exec.php>
    Order deny,allow
 </Files>
+<Files stats_1.php>
+   Order deny,allow
+</Files>

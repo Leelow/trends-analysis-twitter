@@ -77,30 +77,33 @@
         //$count = 0;
 
         $totals = array();
+       $count = 0;
         for($j = $i; $j < $i + $step; $j++) {
-            for($k = 0; $k < count($data[$j]); $k++)
+            for($k = 0; $k < count($data[$j]); $k++) {
                 array_push($totals, $data[$j][$k]);
+                $count++;
+            }
         }
             //array_push($totals, $data[$j]);
         sort($totals);
 
-        if(count($totals) > 0) {
+        if($count > 0) {
 
              $min    = $totals[0];
-             $max    = $totals[count($totals) - 1];
+             $max    = $totals[$count - 1];
 
-             $moyenne = array_sum($totals) / count($totals);
+             $moyenne = array_sum($totals) / $count;
 
              // Calcul des quartiles
-             $quartile_1 = $totals[ceil((count($totals) / 4)) - 1];
-             $quartile_3 = $totals[ceil(((count($totals) / 4) * 3)) - 1];
+             $quartile_1 = $totals[ceil(($count / 4)) - 1];
+             $quartile_3 = $totals[ceil((($count / 4) * 3)) - 1];
 
              // Calcul de la medianne
              if(count($totals) % 2 == 1) {
-                 $mediane = $totals[((count($totals) + 1) / 2 - 1)];
+                 $mediane = $totals[(($count + 1) / 2 - 1)];
              } else {
-                 $val1 = $totals[(count($totals) / 2) - 1];
-                 $val2 = $totals[((count($totals) / 2) + 1) - 1];
+                 $val1 = $totals[($count / 2) - 1];
+                 $val2 = $totals[(($count / 2) + 1) - 1];
                  $mediane = ($val1 + $val2) / 2;
              }
 

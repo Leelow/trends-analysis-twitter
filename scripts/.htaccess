@@ -8,3 +8,6 @@ Order allow,deny
 <Files stats_2.php>
    Order deny,allow
 </Files>
+<Files stats_3.php>
+   Order deny,allow
+</Files>

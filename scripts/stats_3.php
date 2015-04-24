@@ -64,7 +64,7 @@
         $count = 0;
         $clean = $ng = $tf_idf = $sugr = 0;
         for($i = max(0, $borne_inf); $i < min(3000, $borne_sup); $i++) {
-            if(count($time_merge[$i]) > 1) {
+            if(count($time_merge[$i]) > 0) {
                 for($j = 0; $j < count($time_merge[$i]); $j++) {
                     $count++;
                     $clean  += $time_merge[$i][$j]['clean'];

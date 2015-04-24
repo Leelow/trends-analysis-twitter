@@ -45,11 +45,6 @@
                 $temp['tf_idf'] = ($time['tf_idf']  != null) ? $time['tf_idf'][$i]['time']  : '';
                 $temp['sugr']   = ($time['sugr']    != null) ? $time['sugr'][$i]['time']    : '';
 
-                $temp['total'] = (($time['clean'][$i] != null) ? $time['clean'][$i]['time'] : 0) +
-                    (($time['ng'][$i] != null) ? $time['ng'][$i]['time'] : 0) +
-                    (($time['tf_idf'][$i] != null) ? $time['tf_idf'][$i]['time'] : 0) +
-                    (($time['sugr'][$i] != null) ? $time['sugr'][$i]['time'] : 0);
-
                 array_push($time_merge[$tweets], $temp);
             }
 
@@ -67,7 +62,7 @@
         $borne_sup = ceil($tranche + $tranche * $tol);
 
         $count = 0;
-        $clean = $ng = $tf_idf = $sugr = $total = 0;
+        $clean = $ng = $tf_idf = $sugr = 0;
         for($i = max(0, $borne_inf); $i < min(3000, $borne_sup); $i++) {
             if(count($time_merge[$i]) > 1) {
                 for($j = 0; $j < count($time_merge[$i]); $j++) {
@@ -76,7 +71,6 @@
                     $ng     += $time_merge[$i][$j]['ng'];
                     $tf_idf += $time_merge[$i][$j]['tf_idf'];
                     $sugr   += $time_merge[$i][$j]['sugr'];
-                    $total  += $time_merge[$i][$j]['total'];
                 }
             }
         }
@@ -88,7 +82,7 @@
             'ng' => $ng / $count,
             'tf_idf' => $tf_idf / $count,
             'sugr' => $sugr / $count,
-            'total' => $total / $count));
+            'total' => ($clean + $ng + $tf_idf + $sugr) / $count));
     }
 
     $csv = '';

@@ -31,7 +31,7 @@ var size    = 0;
 function prepareTweets() {
 
 	$.ajax({
-		url: 		'/ajax/getTweetsSugar.php?id=' + getId(),
+		url: 		'ajax/getTweetsSugar.php?id=' + getId(),
 		dataType: 	'text',
 		success: 	function(json_data) {
 		

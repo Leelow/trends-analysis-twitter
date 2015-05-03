@@ -44,8 +44,8 @@ TaT se repose sur cron pour la planification de campagnes.
 
 Il se peut que TaT fonctionne correctement sur des versions antérieures, cependant nous garantissons le bon fonctionnement de TaT sous les versions mentionnées plus hauts.
 
-Installation
-------------
+Installation de TaT
+-------------------
 
 Avant toute chose, il faut s'assurer que tous les pré-requis sont installés.
 Par ailleurs, l'utilisateur www-data (utilisateur php par défaut) doit être propriétaire sur le dossier.

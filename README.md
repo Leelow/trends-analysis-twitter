@@ -20,7 +20,7 @@ sudo apt-get upgrade
 
 Versions minimales :
 
-- PhP 5.0+ (extension PDO requise)
+- PHP 5.0+ (extension PDO requise)
 ```bash
 sudo apt-get install php5
 ```
